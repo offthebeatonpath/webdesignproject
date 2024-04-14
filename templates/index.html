@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<head>
+  <title>Cave Diver's Dive Plan Feedback Form</title>
+  <link
+    rel="shortcut icon"
+    href="{{ url_for('static', filename='NSS-CDS_icon.png') }}"
+  />
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+</head>
+
+<body>
+  <h3>Cave Diver's Dive Plan Feedback Form</h3>
+  <div class="container">
+    <img src="{{ url_for('static', filename='NSS-CDS_icon.png') }}" class="image" />
+    <p class ="text">This is web application is designed to give you feedback about your cave diving dive plan. Provide the information of the contact of your lead diver and textual content of the cave dive plan near the bottom of the page. The application will save the response for future improvement and generate feedback for you to help you improve your dive plan.
+    <br>Remember that a safe cave dive plan will always follow Sheck Exley's <a href="{{ url_for('static', filename='recommendations.png') }}" target="_blank">"Ten Recommendations for Safe Cave Diving."</a></p>
+  </div>
+
+  <p>Please select the agency with whom you completed your cave diving training.</p>
+  <div class="label">
+      <input type="radio" id="tdi" name="training_agency" value="TDI">
+      <label for="tdi">Technical Diving International (TDI)</label><br>
+      <input type="radio" id="gue" name="training_agency" value="GUE">
+      <label for="gue">Global Underwater Explorers (GUE)</label><br>
+      <input type="radio" id="iantd" name="training_agency" value="IANTD">
+      <label for="iantd">International Association of Nitrox and Technical Divers (IANTD)</label><br>
+      <input type="radio" id="nsscds" name="training_agency" value="NSS-CDS">
+      <label for="iantd">National Speleological Society-Cave Diving Section (NSS-CDS)</label><br>
+      <input type="radio" id="other" name="training_agency" value="Other">
+      <label for="other">Other:</label>
+      <input type="text" id="other_input" name="other_input" placeholder="Please specify."><br>
+    </div>
+
+  <form action="/" method="post">
+    <p>Please select your highest level of <b>cave diving</b> certification.</p>
+
+    <label for="dive_cert">Lead Cave Diver Certification Level:</label><br>
+    <select id="dive_cert" name="dive_cert">
+        <option value="cavern">Cavern</option>
+        <option value="intro_to_cave">Intro to Cave/Cave Diver 1</option>
+        <option value="full_cave">Full Cave/Cave Diver 2</option>
+    </select><br>
+
+    <label for="name">Lead Cave Diver:</label><br>
+    <input type="text" id="name" name="name" placeholder="The lead cave diver contact."><br>
+
+    <label for="email">Lead Cave Diver Email:</label><br>
+    <input type="text" id="email" name="email" placeholder="The lead cave diver's email."><br>
+
+    <label for="plan">Cave Dive Plan Content:</label><br>
+    <textarea name="plan" placeholder="Provide the text of your cave dive plan here." required /></textarea>
+    <input type="submit" value="Submit" />
+  </form>
+  <h3>Response Content</h3>
+  {% if result %}
+  <div class="result">{{ result }}</div>
+  {% else %}
+  <p>Response content will be provided here and emailed to the address provided.</p>
+  {% endif %}
+
+  <h3>Resources for Planning Successful and Safe Cave Dives</h3>
+  <p>The following resources may be useful to you when planning your cave dive. Remember, one should always follow Sheck Exley's rules for cave diving, as outlined in <a href="https://nsscds.org/wp-content/uploads/2018/05/Blueprint-for-Survival.pdf" target="_blank">A Blueprint for Survival</a>.</p>
+ 
+  <h4><a href="https://www.cavedb.net/" target="_blank">CaveDb.net</a></h4>
+  <h4><a href="https://nsscds.org/" target="_blank">NSS-CDS</a></h4>
+  <h4><a href="https://www.tdisdi.com/tdi-blog/" target="_blank">TDI Blog</a></h4>
+  <h4><a href="https://indepthmag.com/" target="_blank">InDepth GUE Magazine</a></h4>
+  <img src="{{ url_for('static', filename='cave_warning_sign.png') }}" class="image2" />
+</body>
